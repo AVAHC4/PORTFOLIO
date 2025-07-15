@@ -25,7 +25,7 @@ export const educationData: I_Education[] = [
         institute_logo: "/uok.gif",
         course_title: "Bachelors of Computer Application",
         ending_date: "Expected July 2025",
-        institute_name: "University of Kota",
+        institute_name: "VIT-AP University",
         cgpa: 8.5,
         description: ""
     }
