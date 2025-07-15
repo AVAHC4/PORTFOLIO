@@ -15,9 +15,11 @@ const ProjectCard = (props: Project) => {
         <MagicCard className="cursor-pointer rounded-lg dark:shadow-2xl w-[45%] max-sm:w-full h-[310px] border-none !bg-transparent" gradientColor={`${isDarkMode ? '#262626' : 'rgba(197, 241, 241, 0.4)'}`}>
             <ShineBorder className={`border h-full w-full relative rounded-lg flex flex-col justify-center items-start md:shadow-xl !bg-transparent !pointer-events-none`} color={["#FF9933", "#FFFFFF", "#138808"]}>
 
-                <div className='px-3'>
-                    <Image src={props.logo} alt='project-logo' width={30} height={30} />
-                </div>
+                {props.logo && (
+                    <div className='px-3'>
+                        <Image src={props.logo} alt='project-logo' width={30} height={30} />
+                    </div>
+                )}
                 <div className="px-3 mt-4 !pointer-events-auto">
                     <Link href={props.link ? props.link : props.source} target='_blank' underline='none'>
                         <h1 className={`text-xl text-black dark:text-white font-bold tracking-tight text-start whitespace-nowrap ${bricolage_grotesque}`}>{props.title}</h1>

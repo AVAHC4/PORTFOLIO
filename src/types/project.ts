@@ -1,5 +1,5 @@
 export type Project = {
-    logo: string,
+    logo?: string,
     title: string,
     description: string,
     techStack?: string[],
