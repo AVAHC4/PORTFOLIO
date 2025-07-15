@@ -4,7 +4,7 @@ export const experienceData: I_Experience[] = [
     {
         company_link: "https://x.com/fardeentwt",
         company_logo: "/blackbuckslogo1.png",
-        company_name: "building full stack apps",
+        company_name: "Building Full Stack Apps",
         duration: "2025 Feb - 2025 June",
         job_title: "Training Intern",
         description: ""
