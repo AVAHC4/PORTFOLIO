@@ -10,10 +10,10 @@ import ConditionalFooter from "./ConditionalFooter";
 import Provider from "@/context/Provider";
 
 export const metadata: Metadata = {
-  title: "fardeen",
-  description: "Fardeen Mansoori is a Full Stack Developer specializing in building impactful web applications from scratch. Explore his portfolio to see my projects and skills.",
-  keywords: "Fardeen Mansoori, Full Stack Developer, Web Developer, Portfolio, JavaScript, TypeScript, React, Node.js, software engineer",
-  authors: [{ name: "Fardeen Mansoori" }],
+  title: "akhil",
+  description: "Akhil Chava is a Full Stack Developer specializing in building impactful web applications from scratch. Explore his portfolio to see my projects and skills.",
+  keywords: "Akhil Chava, Full Stack Developer, Web Developer, Portfolio, JavaScript, TypeScript, React, Node.js, software engineer",
+  authors: [{ name: "Akhil Chava" }],
   openGraph: {
     title: "fardeen",
     description: "",
