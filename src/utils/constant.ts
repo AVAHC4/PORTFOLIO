@@ -24,7 +24,7 @@ export const educationData: I_Education[] = [
         institute_link: "https://www.uok.ac.in/",
         institute_logo: "/uok.gif",
         course_title: "Bachelors of Computer Application",
-        ending_date: "Expected July 2025",
+        ending_date: "Expected July 2026",
         institute_name: "VIT-AP University",
         cgpa: 8.5,
         description: ""
