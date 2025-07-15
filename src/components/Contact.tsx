@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { Link } from '@radix-ui/themes'
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { bricolage_grotesque } from '@/utils/fonts';
 import { Input } from "@/components/ui/input"
 import { Textarea } from './ui/textarea';
@@ -71,9 +71,9 @@ const Contact = () => {
                         </button>
                     </Link>
 
-                    <Link href="https://twitter.com/messages/compose?recipient_id=1596464580753911810" target="_blank">
+                    <Link href="https://www.linkedin.com/in/akhil-chava-96b314258/" target="_blank">
                         <button className='bg-[#1D9BF0] text-white py-2 px-3 rounded-md flex items-center gap-2 text-sm max-sm:text-xs hover:bg-[#2e7bae]'>
-                            <FaXTwitter className='h-[18px] w-[18px]' /> Chat on Twitter
+                            <FaLinkedin className='h-[18px] w-[18px]' /> Chat on LinkedIn
                         </button>
                     </Link>
                 </div>
