@@ -18,7 +18,7 @@ const SimpleProjectCard = () => {
                         <ShineBorder color={["#FF9933", "#FFFFFF", "#138808"]} className='w-full !bg-transparent !pointer-events-none flex max-lg:flex-col max-lg:items-start p-5 md:shadow-xl'>
                             <div className="w-[10vw] max-[1285px]:w-[13vw]">
                                 <Link href='#' target='_blank'>
-                                    <Image src={project.logo} alt='company-logo' width={50} height={50} className='rounded-full max-lg:h-10 max-lg:w-10' />
+                                    <Image src={project.logo ?? '/adobe.png'} alt='company-logo' width={50} height={50} className='rounded-full max-lg:h-10 max-lg:w-10' />
                                 </Link>
                             </div>
                             <div className="max-lg:mt-3">

@@ -2,14 +2,12 @@
 
 import React, { useState } from 'react'
 import { Link } from '@radix-ui/themes'
-import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa6";
 import { bricolage_grotesque } from '@/utils/fonts';
 import { Input } from "@/components/ui/input"
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Button } from './ui/button';
-import axios, { AxiosError } from 'axios';
-import { ApiResponse } from '@/types/project';
 import { toast } from 'sonner'
 import { SiLivechat } from "react-icons/si";
 import Title from './ui/Title';
@@ -35,22 +33,16 @@ const Contact = () => {
 
         setIsEmailSending(true);
         try {
-            const response = await axios.post<ApiResponse>('/api/send-email', {
-                email,
-                message
-            });
-
-            if (response.data.success) {
-                toast.success(response.data.message);
-                setEmail('');
-                setMessage('');
-            } else {
-                toast.error(response.data.message);
-            }
-
-        } catch (err) {
-            const error = err as AxiosError;
-            toast.error(error.message);
+            const subject = encodeURIComponent('Message from Your Portfolio');
+            const body = encodeURIComponent(`From: ${email}\n\n${message}`);
+            // TODO: Replace the email address below with your own
+            const mailto = `mailto:akhil@example.com?subject=${subject}&body=${body}`;
+            window.location.href = mailto;
+            toast.success('Opening your email app...');
+            setEmail('');
+            setMessage('');
+        } catch {
+            toast.error('Could not open email app.');
         } finally {
             setIsEmailSending(false);
         }
