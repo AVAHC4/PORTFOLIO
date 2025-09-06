@@ -9,7 +9,6 @@ import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Button } from './ui/button';
 import { toast } from 'sonner'
-import { SiLivechat } from "react-icons/si";
 import Title from './ui/Title';
 
 
@@ -36,7 +35,7 @@ const Contact = () => {
             const subject = encodeURIComponent('Message from Your Portfolio');
             const body = encodeURIComponent(`From: ${email}\n\n${message}`);
             // TODO: Replace the email address below with your own
-            const mailto = `mailto:akhil@example.com?subject=${subject}&body=${body}`;
+            const mailto = `mailto:akhilchava4@gmail.com?subject=${subject}&body=${body}`;
             window.location.href = mailto;
             toast.success('Opening your email app...');
             setEmail('');
@@ -57,12 +56,6 @@ const Contact = () => {
                     <h2 className='text-lg max-sm:text-base'>Have a Question? Let&apos;s Chat!</h2>
                 </div>
                 <div className='flex gap-3 mt-2'>
-                    <Link href="https://cal.com/fardeen26/15min" target="_blank">
-                        <button className='bg-[#4ADE80] text-black py-2 px-3 rounded-md flex items-center gap-2 text-sm max-sm:text-xs hover:bg-[#42bc6f]'>
-                            <SiLivechat className='h-[18px] w-[18px]' /> Book a meet
-                        </button>
-                    </Link>
-
                     <Link href="https://www.linkedin.com/in/akhil-chava-96b314258/" target="_blank">
                         <button className='bg-[#1D9BF0] text-white py-2 px-3 rounded-md flex items-center gap-2 text-sm max-sm:text-xs hover:bg-[#2e7bae]'>
                             <FaLinkedin className='h-[18px] w-[18px]' /> Chat on LinkedIn
