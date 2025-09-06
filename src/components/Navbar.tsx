@@ -71,7 +71,7 @@ const Navbar = () => {
                         </Tooltip>
                     </Link>
 
-                    <Link href="https://x.com/intent/follow?screen_name=elonmusk" target='_blank'>
+                    <Link href="https://x.com/intent/follow?screen_name=Akhiltwtz" target='_blank'>
                         <Tooltip content="X">
                             <div className='hover:px-3 max-sm:hover:px-2 py-2.5 dark:hover:bg-[#262626] hover:bg-[#F4F4F5] rounded-full transition-all duration-300'>
                                 <FaXTwitter className='w-[17px] h-[17px] max-sm:w-[15px] max-sm:h-[15px] text-black dark:text-white' />
