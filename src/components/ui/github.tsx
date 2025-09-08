@@ -23,7 +23,8 @@ export const GithubGraph = ({
       setContribution(contributions);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      throw Error(`Error fetching contribution data: ${errorMessage}`);
+      // Log the error but avoid throwing to prevent crashing the component
+      console.error(`Error fetching contribution data: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
@@ -31,6 +32,15 @@ export const GithubGraph = ({
 
   useEffect(() => {
     fetchData();
+  }, [fetchData]);
+
+  // Poll periodically to keep contributions up-to-date in near real time
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 60_000); // every 60 seconds
+
+    return () => clearInterval(intervalId);
   }, [fetchData]);
 
   const label = {
@@ -59,7 +69,15 @@ export const GithubGraph = ({
   );
 };
 async function fetchContributionData(username: string): Promise<Activity[]> {
-  const response = await fetch(`https://github.vineet.pro/api/${username}`);
+  // Add cache-busting to ensure we always get the most recent data
+  const url = `https://github.vineet.pro/api/${username}?t=${Date.now()}`;
+  const response = await fetch(url, {
+    cache: 'no-store',
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+    },
+  });
   const responseBody = await response.json();
 
   if (!response.ok) {
