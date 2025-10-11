@@ -23,7 +23,9 @@ export const GithubGraph = ({
       setContribution(contributions);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      throw Error(`Error fetching contribution data: ${errorMessage}`);
+      // Do not throw to avoid crashing the client component; show empty calendar instead
+      console.error(`Error fetching contribution data: ${errorMessage}`);
+      setContribution([]);
     } finally {
       setIsLoading(false);
     }
@@ -59,11 +61,19 @@ export const GithubGraph = ({
   );
 };
 async function fetchContributionData(username: string): Promise<Activity[]> {
-  const response = await fetch(`https://github.vineet.pro/api/${username}`);
-  const responseBody = await response.json();
+  // Use a reliable public endpoint that returns { total, contributions: Activity[] }
+  const response = await fetch(
+    `https://github-contributions-api.jogruber.de/v4/${username}`,
+    { cache: 'no-store' }
+  );
 
   if (!response.ok) {
-    throw Error("Erroring fetching contribution data");
+    const text = await response.text().catch(() => '');
+    throw Error(`Error fetching contribution data (${response.status}): ${text}`);
   }
-  return responseBody.data;
+
+  const responseBody = await response.json();
+  // The API returns an array shaped for react-activity-calendar already
+  // { date: string, count: number, level: 0..4 }
+  return responseBody.contributions as Activity[];
 }
