@@ -49,21 +49,21 @@ export default ProjectCardList;
 const data: Project[] = [
   {
     title: "ChatMate",
-    description: "A sleek, modern dark theme for desktop and web applications with customizable accent colors and optimized contrast ratios.",
+    description: "AI chat interface built with Next.js, featuring a clean UI and optional speech recognition integration.",
     techStack: ["JavaScript", "CSS", "HTML"],
     link: "",
     source: "https://github.com/AVAHC4/ChatMate",
   },
   {
     title: "Smart Task Planner",
-    description: "A comprehensive e-commerce platform with product catalog, shopping cart, secure checkout, and user account management.",
+    description: "AI-powered planner that turns goals into a structured plan, schedules tasks with dependencies, and visualizes a timeline.",
     techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe API"],
     link: "https://smart-task-planner-omega.vercel.app",
     source: "https://github.com/AVAHC4/Smart-Task-Planner",
   },
   {
     title: "Budget Tracker",
-    description: "Personal finance tracking application with expense categorization, budget planning, and visual reporting of spending patterns.",
+    description: "MERN personal finance app to track income and expenses with categories, dashboards, and secure authentication.",
     techStack: ["JavaScript", "CSS", "Chart.js", "LocalStorage API"],
     link: "",
     source: "https://github.com/AVAHC4/BUDGET-TRACKER",
@@ -77,7 +77,7 @@ const data: Project[] = [
   },
   {
     title: "Drone Detection",
-    description: "Intuitive task management application with drag-and-drop organization, priority levels, and deadline notifications.",
+    description: "Real-time drone detection using YOLOv8 with Python/OpenCV, including dataset prep and bounding-box visualization.",
     techStack: ["React", "TypeScript", "Redux", "Firebase"],
     link: "",
     source: "https://github.com/AVAHC4/DRONE-DETECTION",
