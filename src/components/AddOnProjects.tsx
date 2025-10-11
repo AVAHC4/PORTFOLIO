@@ -20,7 +20,6 @@ const AddOnProjects = () => {
                     />
                 ))}
             </div>
-
         </div>
     )
 }
@@ -29,17 +28,17 @@ export default AddOnProjects;
 
 const data: Project[] = [
     {
-        title: "DSHDARK",
+        title: "ChatMate",
         description: "A sleek, modern dark theme for desktop and web applications with customizable accent colors and optimized contrast ratios.",
         techStack: ["JavaScript", "CSS", "HTML"],
         link: "",
-        source: "https://github.com/AVAHC4/DSHDARK",
+        source: "https://github.com/AVAHC4/ChatMate",
     },
     {
-        title: "E-Shop",
+        title: "Smart Task Planner",
         description: "A comprehensive e-commerce platform with product catalog, shopping cart, secure checkout, and user account management.",
         techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe API"],
-        link: "",
-        source: "https://github.com/AVAHC4/e-shop",
+        link: "https://smart-task-planner-omega.vercel.app",
+        source: "https://github.com/AVAHC4/Smart-Task-Planner",
     }
 ];

@@ -48,25 +48,25 @@ export default ProjectCardList;
 
 const data: Project[] = [
   {
-    title: "DSHDARK",
+    title: "ChatMate",
     description: "A sleek, modern dark theme for desktop and web applications with customizable accent colors and optimized contrast ratios.",
     techStack: ["JavaScript", "CSS", "HTML"],
     link: "",
-    source: "https://github.com/AVAHC4/DSHDARK",
+    source: "https://github.com/AVAHC4/ChatMate",
   },
   {
-    title: "E-Shop",
+    title: "Smart Task Planner",
     description: "A comprehensive e-commerce platform with product catalog, shopping cart, secure checkout, and user account management.",
     techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe API"],
-    link: "",
-    source: "https://github.com/AVAHC4/e-shop",
+    link: "https://smart-task-planner-omega.vercel.app",
+    source: "https://github.com/AVAHC4/Smart-Task-Planner",
   },
   {
-    title: "Finance",
+    title: "Budget Tracker",
     description: "Personal finance tracking application with expense categorization, budget planning, and visual reporting of spending patterns.",
     techStack: ["JavaScript", "CSS", "Chart.js", "LocalStorage API"],
     link: "",
-    source: "https://github.com/AVAHC4/Finance",
+    source: "https://github.com/AVAHC4/BUDGET-TRACKER",
   },
   {
     title: "NYTimes Replica",
@@ -76,11 +76,11 @@ const data: Project[] = [
     source: "https://github.com/AVAHC4/nytimes-replica",
   },
   {
-    title: "Task Manager",
+    title: "Drone Detection",
     description: "Intuitive task management application with drag-and-drop organization, priority levels, and deadline notifications.",
     techStack: ["React", "TypeScript", "Redux", "Firebase"],
     link: "",
-    source: "https://github.com/AVAHC4/TaskManager",
+    source: "https://github.com/AVAHC4/DRONE-DETECTION",
   },
   {
     title: "FREEWRITE",
