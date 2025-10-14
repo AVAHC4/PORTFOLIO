@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "Akhil Chava is a Full Stack Developer specializing in building impactful web applications from scratch. Explore his portfolio to see my projects and skills.",
   keywords: "Akhil Chava, Full Stack Developer, Web Developer, Portfolio, JavaScript, TypeScript, React, Node.js, software engineer",
   authors: [{ name: "Akhil Chava" }],
+  icons: {
+    icon: "/chat-icon.png",
+  },
   openGraph: {
     title: "fardeen",
     description: "",

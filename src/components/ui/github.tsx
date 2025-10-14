@@ -23,7 +23,7 @@ export const GithubGraph = ({
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       
       console.error(`Error fetching contribution data: ${errorMessage}`);
-      setContribution([]);
+      setContribution(generateFallback());
     } finally {
       setIsLoading(false);
     }
@@ -69,10 +69,20 @@ export const GithubGraph = ({
     </>
   );
 };
+function generateFallback(days: number = 30): Activity[] {
+  const today = new Date();
+  const arr: Activity[] = [];
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const date = d.toISOString().slice(0, 10);
+    arr.push({ date, count: 0, level: 0 });
+  }
+  return arr;
+}
 async function fetchContributionData(username: string): Promise<Activity[]> {
-  // Use a reliable public endpoint that returns { total, contributions: Activity[] }
   const response = await fetch(
-    `https://github-contributions-api.jogruber.de/v4/${username}`,
+    `/api/github-contributions?username=${encodeURIComponent(username)}`,
     { cache: 'no-store' }
   );
 
@@ -99,5 +109,5 @@ async function fetchContributionData(username: string): Promise<Activity[]> {
   // Sort ascending by date for stable rendering
   filtered.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
 
-  return filtered;
+  return filtered.length > 0 ? filtered : generateFallback();
 }
