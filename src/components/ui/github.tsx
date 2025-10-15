@@ -13,19 +13,20 @@ export const GithubGraph = ({
   blockMargin,
 }: GithubGraphProps) => {
   const [contribution, setContribution] = useState<Activity[]>([]);
-  const [loading, setIsLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchData = useCallback(async () => {
     try {
       const contributions = await fetchContributionData(username);
+      console.log(`Fetched ${contributions.length} contribution days for ${username}`);
       setContribution(contributions);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      
       console.error(`Error fetching contribution data: ${errorMessage}`);
-      setContribution(generateFallback());
+      // Generate full year fallback
+      setContribution(generateFallback(365));
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   }, [username]);
 
@@ -38,38 +39,36 @@ export const GithubGraph = ({
   };
 
   return (
-    <>
-      <ActivityCalendar
-        data={contribution}
-        maxLevel={4}
-        blockSize={11}
-        blockRadius={2}
-        blockMargin={blockMargin ?? 3}
-        weekStart={0}
-        showWeekdayLabels={["mon", "wed", "fri"]}
-        loading={loading}
-        labels={label}
-        theme={{
-          light: [
-            "#ebedf0",
-            "#9be9a8",
-            "#40c463",
-            "#30a14e",
-            "#216e39",
-          ],
-          dark: [
-            "#161b22",
-            "#0e4429",
-            "#006d32",
-            "#26a641",
-            "#39d353",
-          ],
-        }}
-      />
-    </>
+    <ActivityCalendar
+      data={contribution}
+      maxLevel={4}
+      blockSize={11}
+      blockRadius={2}
+      blockMargin={blockMargin ?? 3}
+      weekStart={0}
+      showWeekdayLabels
+      loading={loading}
+      labels={label}
+      theme={{
+        light: [
+          "#ebedf0",
+          "#9be9a8",
+          "#40c463",
+          "#30a14e",
+          "#216e39",
+        ],
+        dark: [
+          "#161b22",
+          "#0e4429",
+          "#006d32",
+          "#26a641",
+          "#39d353",
+        ],
+      }}
+    />
   );
 };
-function generateFallback(days: number = 30): Activity[] {
+function generateFallback(days: number = 365): Activity[] {
   const today = new Date();
   const arr: Activity[] = [];
   for (let i = days - 1; i >= 0; i--) {
@@ -107,7 +106,11 @@ async function fetchContributionData(username: string): Promise<Activity[]> {
   });
 
   // Sort ascending by date for stable rendering
-  filtered.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+  filtered.sort((a, b) => {
+    if (a.date < b.date) return -1;
+    if (a.date > b.date) return 1;
+    return 0;
+  });
 
   return filtered.length > 0 ? filtered : generateFallback();
 }
