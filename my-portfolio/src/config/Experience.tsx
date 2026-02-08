@@ -19,6 +19,7 @@ export interface Experience {
   position: string;
   location: string;
   image: string;
+  imageDark?: string;
   description: string[];
   startDate: string;
   endDate: string;
@@ -37,7 +38,8 @@ export const experiences: Experience[] = [
     company: 'Blackbucks',
     position: 'Software Engineering Intern (Full-Stack)',
     location: 'Remote',
-    image: '/company/blackbucks.png',
+    image: '/company/blackbucks-light.png',
+    imageDark: '/company/blackbucks-dark.png',
     description: [
       'Built and deployed a proctored hiring and assessment platform (React, Next.js, Node.js, Express, MongoDB, JWT) used by 100+ active users; automated transaction categorization and reduced manual bookkeeping time by 20%.',
       'Backend performance & scaling (MongoDB indexing, query optimization, API refactor): reduced average fetch latency by 40% (250→150 ms), supported 50k+ records and 200 concurrent requests without timeouts.',

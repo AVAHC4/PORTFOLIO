@@ -26,13 +26,33 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       <div className="flex flex-col gap-2 md:flex-row md:justify-between">
         {/* Left Side */}
         <div className="flex items-center gap-4">
-          <Image
-            src={experience.image}
-            alt={experience.company}
-            width={100}
-            height={100}
-            className="size-12 rounded-md"
-          />
+          {/* Logo with dark/light mode support */}
+          {experience.imageDark ? (
+            <>
+              <Image
+                src={experience.image}
+                alt={experience.company}
+                width={100}
+                height={100}
+                className="size-12 rounded-md dark:hidden"
+              />
+              <Image
+                src={experience.imageDark}
+                alt={experience.company}
+                width={100}
+                height={100}
+                className="size-12 rounded-md hidden dark:block"
+              />
+            </>
+          ) : (
+            <Image
+              src={experience.image}
+              alt={experience.company}
+              width={100}
+              height={100}
+              className="size-12 rounded-md"
+            />
+          )}
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <h3
