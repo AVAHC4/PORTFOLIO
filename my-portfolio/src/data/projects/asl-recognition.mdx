@@ -1,0 +1,74 @@
+---
+title: 'ASL Recognition'
+description: 'Real-time bidirectional ASL alphabet recognition using BiLSTM-Attention network with confidence-gated decoding.'
+image: '/project/asl-recognition.png'
+technologies:
+  [
+    'Python',
+    'TensorFlow',
+    'MediaPipe',
+    'BiLSTM',
+    'OpenCV',
+  ]
+github: 'https://github.com/AVAHC4/asl-recognition'
+live: '#'
+timeline: '2 months'
+role: 'ML Researcher'
+team: 'Solo'
+status: 'completed'
+featured: true
+challenges:
+  [
+    'Real-time inference',
+    'Dataset curation',
+    'Attention mechanism',
+    'Confidence-gated decoding',
+  ]
+learnings:
+  [
+    'BiLSTM architectures',
+    'Attention networks',
+    'MediaPipe integration',
+    'Research paper writing',
+  ]
+isPublished: true
+---
+
+# ASL Alphabet Recognition System
+
+## Overview
+
+A real-time ASL fingerspelling recognition pipeline using hand landmarks and a BiLSTM + Attention model with confidence-gated decoding, published as a TechRxiv preprint.
+
+## Research Highlights
+
+- **Published:** TechRxiv preprint (2026)
+- **Validation Accuracy:** 99.4%
+- **Top-3 Accuracy:** 100%
+- **Real-time Performance:** ~30 FPS
+
+## Dataset
+
+- Custom dataset of ~2,500 sequences
+- Over 75,000 frames across 26 ASL classes
+- Curated and annotated for research quality
+
+## Technical Architecture
+
+- **Feature Extraction:** MediaPipe for 63-dimensional hand landmarks
+- **Model:** 1.36M parameter BiLSTM-Attention network
+- **Decoding:** Confidence-gated decoding for robust inference
+
+## Tech Stack
+
+- Python for development
+- TensorFlow for deep learning
+- MediaPipe for hand tracking
+- BiLSTM for sequence modeling
+- OpenCV for video processing
+
+## Key Contributions
+
+- Built real-time inference pipeline from webcam video
+- Emphasized robustness for real-world deployment
+- Created comprehensive research documentation
