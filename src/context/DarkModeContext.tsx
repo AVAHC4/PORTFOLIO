@@ -27,7 +27,7 @@ const DarkModeProvider: React.FC<DarkModeProviderProps> = ({ children }) => {
         } else {
             document.documentElement.classList.remove("dark");
         }
-        
+
         document.documentElement.style.overflowY = 'auto';
     }, []);
 

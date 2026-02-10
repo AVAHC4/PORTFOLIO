@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 import * as z from 'zod';
 
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -62,63 +63,63 @@ function checkRateLimit(clientIP: string): {
   };
 }
 
-async function sendToTelegram(data: {
+async function sendEmail(data: {
   name: string;
   email: string;
   phone: string;
   message: string;
 }): Promise<boolean> {
-  const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
-  const telegramChatId = process.env.TELEGRAM_CHAT_ID;
+  const emailUser = process.env.EMAIL_USER;
+  const emailPass = process.env.EMAIL_PASS;
 
-  if (!telegramToken) {
-    console.error('TELEGRAM_BOT_TOKEN not configured');
+  if (!emailUser || !emailPass) {
+    console.error('EMAIL_USER or EMAIL_PASS not configured');
     return false;
   }
 
-  if (!telegramChatId) {
-    console.error('TELEGRAM_CHAT_ID not configured');
-    return false;
-  }
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: emailUser,
+      pass: emailPass,
+    },
+  });
 
-  const message = `
-🔔 *New Contact Form Submission*
+  const mailOptions = {
+    from: emailUser,
+    to: 'akhilchava4@gmail.com', // The destination email
+    replyTo: data.email, // Allow directly replying to the sender
+    subject: `New Contact Form Submission from ${data.name}`,
+    text: `
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
 
-👤 *Name:* ${data.name.trim()}
-📧 *Email:* ${data.email.trim()}
-📱 *Phone:* ${data.phone.trim()}
-
-💬 *Message:*
-${data.message.trim()}
-
-⏰ *Submitted:* ${new Date().toISOString()}
-📍 *Timezone:* ${Intl.DateTimeFormat().resolvedOptions().timeZone}
-  `.trim();
+Message:
+${data.message}
+    `,
+    html: `
+      <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+        <h2 style="color: #0070f3;">New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-top: 20px;">
+          <p style="margin: 0;"><strong>Message:</strong></p>
+          <p style="white-space: pre-wrap;">${data.message}</p>
+        </div>
+        <p style="font-size: 12px; color: #888; margin-top: 30px;">
+          Sent from your portfolio website.
+        </p>
+      </div>
+    `,
+  };
 
   try {
-    const telegramUrl = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
-
-    const response = await fetch(telegramUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: telegramChatId,
-        text: message,
-        parse_mode: 'Markdown',
-      }),
-    });
-
-    if (response.ok) {
-      return true;
-    } else {
-      const errorText = await response.text();
-      console.error('Failed to send to Telegram:', errorText);
-      return false;
-    }
+    await transporter.sendMail(mailOptions);
+    return true;
   } catch (error) {
-    console.error('Error sending to Telegram:', error);
+    console.error('Error sending email:', error);
     return false;
   }
 }
@@ -148,11 +149,14 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
 
-    const telegramSent = await sendToTelegram(validatedData);
+    const emailSent = await sendEmail(validatedData);
 
-    if (!telegramSent) {
+    if (!emailSent) {
       return NextResponse.json(
-        { error: 'Failed to send message. Please try again.' },
+        {
+          error:
+            'Failed to send message. Please try again later or contact me directly via email.',
+        },
         { status: 500 },
       );
     }

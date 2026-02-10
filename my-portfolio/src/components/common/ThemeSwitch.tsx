@@ -68,8 +68,15 @@ export default function ThemeSwitch({
       return;
     }
 
-    document.startViewTransition(switchTheme);
-  }, [theme, setTheme, isMobile, triggerHaptic]);
+    const transition = document.startViewTransition(switchTheme);
+
+    transition.finished.finally(() => {
+      // Delay cleanup to avoid glitches
+      setTimeout(() => {
+        updateStyles('');
+      }, 100);
+    });
+  }, [theme, setTheme, isMobile, triggerHaptic, updateStyles, variant, start, url]);
 
   return (
     <Button
