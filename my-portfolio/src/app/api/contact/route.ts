@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import * as z from 'zod';
 
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -69,54 +69,51 @@ async function sendEmail(data: {
   phone: string;
   message: string;
 }): Promise<boolean> {
-  const emailUser = process.env.EMAIL_USER;
-  const emailPass = process.env.EMAIL_PASS;
+  const resendApiKey = process.env.RESEND_API_KEY;
 
-  if (!emailUser || !emailPass) {
-    console.error('EMAIL_USER or EMAIL_PASS not configured');
+  if (!resendApiKey) {
+    console.error('RESEND_API_KEY not configured');
     return false;
   }
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: emailUser,
-      pass: emailPass,
-    },
-  });
+  const resend = new Resend(resendApiKey);
 
-  const mailOptions = {
-    from: emailUser,
-    to: 'akhilchava4@gmail.com', // The destination email
-    replyTo: data.email, // Allow directly replying to the sender
-    subject: `New Contact Form Submission from ${data.name}`,
-    text: `
+  try {
+    const { error } = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>', // Default testing domain
+      to: 'akhilchava4@gmail.com', // Verified email for testing
+      replyTo: data.email,
+      subject: `New Contact Form Submission from ${data.name}`,
+      text: `
 Name: ${data.name}
 Email: ${data.email}
 Phone: ${data.phone}
 
 Message:
 ${data.message}
-    `,
-    html: `
-      <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-        <h2 style="color: #0070f3;">New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${data.name}</p>
-        <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
-        <p><strong>Phone:</strong> ${data.phone}</p>
-        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-top: 20px;">
-          <p style="margin: 0;"><strong>Message:</strong></p>
-          <p style="white-space: pre-wrap;">${data.message}</p>
+      `,
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+          <h2 style="color: #0070f3;">New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+          <p><strong>Phone:</strong> ${data.phone}</p>
+          <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-top: 20px;">
+            <p style="margin: 0;"><strong>Message:</strong></p>
+            <p style="white-space: pre-wrap;">${data.message}</p>
+          </div>
+          <p style="font-size: 12px; color: #888; margin-top: 30px;">
+            Sent from your portfolio website via Resend.
+          </p>
         </div>
-        <p style="font-size: 12px; color: #888; margin-top: 30px;">
-          Sent from your portfolio website.
-        </p>
-      </div>
-    `,
-  };
+      `,
+    });
 
-  try {
-    await transporter.sendMail(mailOptions);
+    if (error) {
+      console.error('Resend API Error:', error);
+      return false;
+    }
+
     return true;
   } catch (error) {
     console.error('Error sending email:', error);
