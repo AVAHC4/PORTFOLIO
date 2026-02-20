@@ -8,7 +8,7 @@ import Phone from '@/components/svgs/devices/Phone';
 
 export const devices = [
   {
-    name: 'MacBook Pro 16" M4 46GB 512GB',
+    name: 'MacBook Air 15" M3 16GB 512GB',
     icon: <Laptop className="size-4" />,
   },
   {
@@ -28,7 +28,7 @@ export const devices = [
     icon: <Headphones className="size-4" />,
   },
   {
-    name: 'Samsung S23 (256 GB)',
+    name: 'Pixel 7 (128 GB)',
     icon: <Phone className="size-4" />,
   },
 ];

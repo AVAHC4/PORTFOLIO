@@ -13,7 +13,6 @@ import Moon from '../svgs/Moon';
 import Sun from '../svgs/Sun';
 import { Button } from '../ui/button';
 
-/* eslint-disable react-hooks/exhaustive-deps */
 
 interface ThemeToggleAnimationProps {
   variant?: AnimationVariant;

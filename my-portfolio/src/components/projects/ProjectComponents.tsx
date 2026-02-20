@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Bun from '@/components/technologies/Bun';
 import JavaScript from '@/components/technologies/JavaScript';
 import MongoDB from '@/components/technologies/MongoDB';
-// Import technology components
 import NextJs from '@/components/technologies/NextJs';
 import NodeJs from '@/components/technologies/NodeJs';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
@@ -165,116 +165,54 @@ const Learnings = ({ learnings }: { learnings: string[] }) => {
 };
 
 export const ProjectComponents = {
-  // Inherit blog components for basic markdown
-  img: ({
-    src,
-    alt,
-    ...props
-  }: {
-    src: string;
-    alt: string;
-    [key: string]: unknown;
-  }) => (
+  img: ({ src, alt }: any) => (
     <Image
-      src={src}
-      alt={alt}
+      src={src || ''}
+      alt={alt || ''}
       width={800}
       height={400}
       className="rounded-lg"
-      {...props}
     />
   ),
-  h1: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  h1: ({ children, ...props }: any) => (
     <h1 className="mb-6 text-4xl font-bold" {...props}>
       {children}
     </h1>
   ),
-  h2: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  h2: ({ children, ...props }: any) => (
     <h2 className="mb-4 mt-8 text-3xl font-semibold" {...props}>
       {children}
     </h2>
   ),
-  h3: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  h3: ({ children, ...props }: any) => (
     <h3 className="mb-3 mt-6 text-2xl font-medium" {...props}>
       {children}
     </h3>
   ),
-  p: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  p: ({ children, ...props }: any) => (
     <p className="mb-4 leading-7 text-muted-foreground" {...props}>
       {children}
     </p>
   ),
-  ul: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  ul: ({ children, ...props }: any) => (
     <ul className="mb-4 ml-6 list-disc space-y-2" {...props}>
       {children}
     </ul>
   ),
-  ol: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  ol: ({ children, ...props }: any) => (
     <ol className="mb-4 ml-6 list-decimal space-y-2" {...props}>
       {children}
     </ol>
   ),
-  li: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  li: ({ children, ...props }: any) => (
     <li className="leading-7 text-muted-foreground" {...props}>
       {children}
     </li>
   ),
-  pre: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => {
+  pre: ({ children, ...props }: any) => {
     const getTextContent = (node: React.ReactNode): string => {
-      if (typeof node === 'string') {
-        return node;
-      }
-      if (typeof node === 'number') {
-        return String(node);
-      }
+      if (typeof node === 'string') return node;
+      if (typeof node === 'number') return String(node);
       if (
         React.isValidElement(node) &&
         node.props &&
@@ -284,9 +222,7 @@ export const ProjectComponents = {
           (node.props as { children?: React.ReactNode }).children,
         );
       }
-      if (Array.isArray(node)) {
-        return node.map(getTextContent).join('');
-      }
+      if (Array.isArray(node)) return node.map(getTextContent).join('');
       return '';
     };
 
@@ -304,15 +240,7 @@ export const ProjectComponents = {
       </div>
     );
   },
-  code: ({
-    children,
-    className,
-    ...props
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    [key: string]: unknown;
-  }) => {
+  code: ({ children, className, ...props }: any) => {
     if (className?.includes('language-')) {
       return (
         <code className={className} {...props}>
@@ -327,13 +255,7 @@ export const ProjectComponents = {
       </code>
     );
   },
-  blockquote: ({
-    children,
-    ...props
-  }: {
-    children: React.ReactNode;
-    [key: string]: unknown;
-  }) => (
+  blockquote: ({ children, ...props }: any) => (
     <blockquote
       className="mb-4 border-l-4 border-primary pl-4 italic text-muted-foreground"
       {...props}
