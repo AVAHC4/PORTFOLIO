@@ -26,7 +26,6 @@ export const heroConfig = {
   title: 'A Software Engineer.',
   avatar: '/assets/logo.png',
 
-
   skills: [
     {
       name: 'React',
@@ -77,7 +76,7 @@ export const heroConfig = {
   ],
 };
 
-// Social Links Configuration
+
 export const socialLinks = [
   {
     name: 'LinkedIn',
