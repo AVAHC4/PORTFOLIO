@@ -11,20 +11,13 @@ export const devices = [
     name: 'MacBook Air 15" M3 16GB 512GB',
     icon: <Laptop className="size-4" />,
   },
+
   {
-    name: 'LG Ultragear 27GN650 (27 inch, 68.5 cm)',
-    icon: <Monitor className="size-4" />,
-  },
-  {
-    name: 'Cosmic Byte firefly Mechanical Keyboard',
-    icon: <Keyboard className="size-4" />,
-  },
-  {
-    name: 'Ideapad Gaming Mouse',
+    name: 'Arctic Fox Pureview Transparent Wireless and Bluetooth Rechargeable Mouse',
     icon: <Mouse className="size-4" />,
   },
   {
-    name: 'Crossbeats Roar 2.0 (Special Addition)',
+    name: 'Airpods Pro Gen 2',
     icon: <Headphones className="size-4" />,
   },
   {
