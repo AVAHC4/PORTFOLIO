@@ -1,7 +1,5 @@
 import Headphones from '@/components/svgs/devices/Headphones';
-import Keyboard from '@/components/svgs/devices/Keyboard';
 import Laptop from '@/components/svgs/devices/Laptop';
-import Monitor from '@/components/svgs/devices/Monitor';
 import Mouse from '@/components/svgs/devices/Mouse';
 import Phone from '@/components/svgs/devices/Phone';
 
