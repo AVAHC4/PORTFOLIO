@@ -9,7 +9,7 @@ import PostgreSQL from '@/components/technologies/PostgreSQL';
 import ReactIcon from '@/components/technologies/ReactIcon';
 import TypeScript from '@/components/technologies/TypeScript';
 
-// Component mapping for skills
+
 export const skillComponents = {
   TypeScript: TypeScript,
   ReactIcon: ReactIcon,
@@ -21,12 +21,12 @@ export const skillComponents = {
 };
 
 export const heroConfig = {
-  // Personal Information
+
   name: 'Akhil Chava',
   title: 'A Software Engineer.',
   avatar: '/assets/logo.png',
 
-  // Skills Configuration
+
   skills: [
     {
       name: 'React',
@@ -55,13 +55,12 @@ export const heroConfig = {
     },
   ],
 
-  // Description Configuration
   description: {
     template:
       'I build full-stack web applications using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. Passionate about <b>AI/ML</b>, <b>Cloud Computing</b>, and creating impactful software solutions.',
   },
 
-  // Buttons Configuration
+
   buttons: [
     {
       variant: 'outline',
