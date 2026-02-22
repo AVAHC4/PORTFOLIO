@@ -52,13 +52,15 @@ export default function Hero() {
   return (
     <Container className="mx-auto max-w-5xl">
       {/* Image */}
-      <Image
-        src={avatar}
-        alt="hero"
-        width={100}
-        height={100}
-        className="size-24 rounded-full dark:bg-yellow-300 bg-blue-300"
-      />
+      <div className="size-24 rounded-full dark:bg-yellow-300 bg-blue-300 overflow-hidden flex items-center justify-center">
+        <Image
+          src={avatar}
+          alt="hero"
+          width={100}
+          height={100}
+          className="-translate-x-1.5"
+        />
+      </div>
 
       {/* Text Area */}
       <div className="mt-8 flex flex-col gap-2">
