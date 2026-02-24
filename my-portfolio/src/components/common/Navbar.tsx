@@ -14,7 +14,7 @@ export default function Navbar() {
           <Link href="/">
             <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-md border border-gray-200 bg-blue-300 transition-all duration-300 ease-in-out hover:scale-90 dark:bg-yellow-300">
               <Image
-                className="h-12 w-12 max-w-none -translate-x-1"
+                className="h-12 w-12 max-w-none -translate-x-0.5"
                 src={navbarConfig.logo.src}
                 alt={navbarConfig.logo.alt}
                 width={navbarConfig.logo.width}
