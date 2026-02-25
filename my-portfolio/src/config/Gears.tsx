@@ -41,8 +41,7 @@ export const webExtensions = [
 ];
 
 export const software = [
-  { name: 'Dia', href: 'https://www.diabrowser.com/' },
-  { name: 'Zen Browser', href: 'https://zen-browser.app/' },
+  { name: 'Brave', href: 'https://www.diabrowser.com/' },
   { name: 'Discord', href: 'https://discord.com/download' },
   { name: 'Notion', href: 'https://www.notion.so/desktop' },
   { name: 'TickTick', href: 'https://ticktick.com/download' },
