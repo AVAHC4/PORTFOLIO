@@ -46,14 +46,6 @@ export const software = [
   { name: 'Notion', href: 'https://www.notion.so/desktop' },
   { name: 'TickTick', href: 'https://ticktick.com/download' },
   { name: 'GitHub Desktop', href: 'https://desktop.github.com/' },
-  {
-    name: 'Free Download Manager',
-    href: 'https://www.freedownloadmanager.org/',
-  },
   { name: 'OBS Studio', href: 'https://obsproject.com/' },
-  {
-    name: 'NVIDIA Broadcast',
-    href: 'https://www.nvidia.com/en-us/geforce/geforce-experience/broadcast/',
-  },
   { name: 'VLC', href: 'https://www.videolan.org/vlc/' },
 ];
