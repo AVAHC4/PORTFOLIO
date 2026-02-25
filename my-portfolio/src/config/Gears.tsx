@@ -45,10 +45,6 @@ export const software = [
   { name: 'Discord', href: 'https://discord.com/download' },
   { name: 'Notion', href: 'https://www.notion.so/desktop' },
   { name: 'TickTick', href: 'https://ticktick.com/download' },
-  {
-    name: 'Microsoft Power Toys',
-    href: 'https://www.microsoft.com/en-us/p/powertoys/9nblggh4nqj3?activetab=pivot:overviewtab',
-  },
   { name: 'GitHub Desktop', href: 'https://desktop.github.com/' },
   {
     name: 'Free Download Manager',
