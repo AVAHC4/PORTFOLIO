@@ -33,7 +33,6 @@ export const webExtensions = [
   },
   { name: 'daily.dev', href: 'https://daily.dev/' },
   { name: 'Grammarly', href: 'https://www.grammarly.com/' },
-  { name: 'Wappalyzer', href: 'https://www.wappalyzer.com/' },
   {
     name: 'ColorZilla',
     href: 'https://chromewebstore.google.com/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp?hl=en',
