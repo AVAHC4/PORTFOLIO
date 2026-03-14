@@ -152,6 +152,48 @@ const ChatBubble: React.FC = () => {
 
   const sendMessage = async (messageText: string, botMessageId: number) => {
     try {
+      // Intercept quick questions to provide fixed responses
+      if (chatSuggestions.includes(messageText)) {
+        let fixedResponse = '';
+        if (messageText === chatSuggestions[0]) {
+          fixedResponse = "I primarily work with **React**, **Next.js**, **TypeScript**, **Node.js**, **MongoDB**, and **PostgreSQL**. I'm also passionate about **AI/ML** and **Cloud Computing**.";
+        } else if (messageText === chatSuggestions[1]) {
+          fixedResponse = "Some of my recent projects include an **ASL Recognition** system, an **AI Chatbot** powered by DeepSeek, a modern **Portfolio Website**, and a **Drone Detection** system using YOLOv8. You can find more details in the Projects section!";
+        } else if (messageText === chatSuggestions[2]) {
+          fixedResponse = "You can reach out to me via email at [akhilchava4@gmail.com](mailto:akhilchava4@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/akhil-chava-96b314258/). I'm always open to new opportunities!";
+        }
+
+        if (fixedResponse) {
+          let currentText = '';
+          const words = fixedResponse.split(' ');
+          
+          for (let i = 0; i < words.length; i++) {
+            currentText += (i === 0 ? '' : ' ') + words[i];
+            
+            setMessages((prev) =>
+              prev.map((msg) =>
+                msg.id === botMessageId
+                  ? { ...msg, text: currentText, isStreaming: true }
+                  : msg,
+              ),
+            );
+            await new Promise((resolve) => setTimeout(resolve, 40));
+          }
+          
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === botMessageId
+                ? { ...msg, text: currentText, isStreaming: false }
+                : msg,
+            ),
+          );
+          
+          setIsLoading(false);
+          setNewMessage('');
+          return;
+        }
+      }
+
       // Prepare conversation history for Gemini API format
       const history = messages.slice(-10).map((msg) => ({
         role: msg.sender === 'user' ? ('user' as const) : ('model' as const),
