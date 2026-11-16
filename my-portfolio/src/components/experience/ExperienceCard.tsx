@@ -16,7 +16,9 @@ interface ExperienceCardProps {
 }
 
 const parseDescription = (text: string): string => {
-  return text.replace(/\*(.*?)\*/g, '<b>$1</b>');
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+    .replace(/\*(.*?)\*/g, '<b>$1</b>');
 };
 
 export function ExperienceCard({ experience }: ExperienceCardProps) {
